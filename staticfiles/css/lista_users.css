@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inder', sans-serif;
+}
+
+body{
+    background-color: #dcd9d4;
+}
+
+/* cor do link  */
+a {
+    text-decoration: none;  
+}
+
+.retangulo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "ret1 ret1 ret1 ret1";
+    width: 100vw;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+}
+
+/* Titulo Relação de usuarios */
+.relacao{
+    display: grid;
+    margin-top: 10rem;
+    margin-bottom: 2rem;
+    margin-left: 43%;
+    border-radius: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "ret1 ret1 ret1 ret1";
+    width: 30vw;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+}
+
+/* Titulo Relação de CF */
+#ret2{
+    font-size: 20px;
+    position: relative;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #D8752E;
+    color: #ffffff;
+    grid-area: ret1;
+    padding: 1%;
+}
+
+#ret1{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #D8752E;
+    grid-area: ret1;
+    padding: 1%;
+}
+
+/* Conteúdo do Botão */
+.button_acess{
+    position: relative;
+    display: grid;
+	border-radius: 7px;
+    margin-left: 33%;
+    margin-bottom: 1rem;
+    width: 60%;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 1%;
+    padding-left: 2%;
+    background-color: #ffffff ;
+	border: 1px solid #D8752E;
+    color: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+}
+
+
+/* Efeito Hover */
+.button_acess:hover{
+    cursor: pointer;
+    background-color: #D8752E;
+    color: rgb(0, 0, 0);
+}
+
+.buttons{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 5%;
+    text-align: left;
+    width: 15%;
+}
+
+.btn-laranja{
+    color: white;
+    background-color: #D8752E;
+    width: 85%;
+}
+
+.btn-primary{
+    margin-top: 10%;
+    width: 85%;
+}
+
+.btn-danger{
+    margin-top: 10%;
+    width: 85%;
+}
+
+/* Efeito Hover */
+.btn-laranja:hover{
+    cursor: pointer;
+    color: white;
+    background-color: #c06828;
+}
+
+@media only screen and (max-width: 667px) {
+	.button_acess {
+        font-size: 10px;
+	}
+}

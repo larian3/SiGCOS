@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--Link do CSS do Projeto-->
+<link rel="stylesheet" href="{% static 'css/cadastrar_os.css' %}">
+
+<body>
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Ordem de Serviço</div>
+    </div>
+
+    <div class="conteiner" style="margin-top: 10%;">
+        <form action="" method="POST" >
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-2">
+                    <label for="OSnumero" class="form-label">Código OS</label>
+                    {{form_os.codigo_os}}
+                </div>
+                <div class="col-md-4">
+                    <label for="n_contrato" class="form-label">Contrato</label>
+                    {{form_os.n_contrato}}
+                </div>
+                <!--Datas OS-->
+                <div class="col-md-3">
+                    <label for="DataAbertura" class="form-label">Abertura</label>
+                    {{form_os.abertura}}
+                </div>
+                <div class="col-md-3">
+                    <label for="DataFim" class="form-label">Vencimento</label>
+                    {{form_os.vencimento}}
+                </div>
+                <!--Contratante-->
+                <div class="col-md-4">
+                    <label for="cnpj_fk" class="form-label">CPF/CNPJ</label>
+                    {{form_os.cnpj_fk}}
+                </div>
+                <div class="col-md-8">
+                    <label for="contratante" class="form-label">Contratante</label>
+                    {{form_os.contratante}}
+                </div>
+                <!--Pontos de Função-->
+                <div class="col-md-6">
+                    <label for="pf" class="form-label">Qtd Pontos de Função (PF)</label>
+                    {{form_os.pontos_função}}
+                </div>
+                <!--Ordens de Serviço-->
+                <div class="col-md-6">
+                    <label for="oesses" class="form-label">Qtd de Horas (OS)</label>
+                    {{form_os.qtd_horas}}
+                </div>
+                <!--Opções Tipo de Serviço-->
+                <div class="col-md-6">
+                    <label for="TipoServ">Tipo de Serviço</label>
+                    {{form_os.tipo_serviço}}
+                </div>
+                <!--Opções-->
+                <div class="col-md-6">
+                    <label for="situacao">Situação OS</label>
+                    {{form_os.situação}}
+                </div>
+
+                <div class="col-md-12">
+                    <label for="description">Descrição</label>
+                    {{form_os.descrição}}
+                </div>
+            </div>
+
+            <!--Buttons-->
+        <div class="buttons">
+            <button id="btnAdc" class="btn btn-laranja" onclick="salvarDados()">Salvar</button>
+            <!--<button id="btnLimp" class="btn btn-cinza">Limpar</button>-->
+            <button id="btnCanc" class="btn btn-danger" onclick="voltarPagina()">Cancelar</button>
+            
+            <Script>
+                //função para exibir mensagem de confirmação
+                function salvarDados(){
+                    var confirmacao = confirm("Projeto salvo com sucesso!");
+                    if (confirmacao){
+                        document.getElementById("btnAdc")
+                    }
+                }
+
+                //funcção para voltar a pagina anterior caso o btn cancelar seja clicado
+                function voltarPagina(){
+                    window.history.back();
+                }
+
+            </Script>
+
+        </div>
+
+        </form>
+    </div>
+</body>
+
+{% endblock%}

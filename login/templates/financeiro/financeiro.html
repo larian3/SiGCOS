@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %} cadastrar cliente/fornecedor {% endblock%}
+{% load static %}
+
+{% block content %} 
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--Link CSS-->
+<link rel="stylesheet" href="{% static 'css/crud_cf.css' %}">
+
+<body>
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Cadastrar Cliente / Fornecedor</div>
+    </div>
+
+    <div class="conteiner" style="margin-top: 10%;">
+    <form action="" method="POST">
+
+        {% csrf_token %} 
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="cnpj" class="form-label">CPF/CNPJ</label>
+                {{form_cf.cpf_cnpj}}
+            </div>
+            <div class="col-md-6">
+                <label for="razaoSocial" class="form-label">Razão Social</label>
+                {{form_cf.razão_social}}
+         
+            </div>
+            <div class="col-md-6">
+                <label for="nomeFant" class="form-label">Nome Fantasia</label>
+                {{form_cf.nome_fantasia}}
+            </div>
+            <div class="col-md-6">
+                <label for="rg" class="form-label">RG</label> 
+                {{form_cf.rg}}
+            </div>
+            <div class="col-md-6">
+                <label for="endereco" class="form-label">Endereço</label>
+                {{form_cf.endereço}}
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                {{form_cf.email}}
+            </div>
+            <div class="col-md-6">
+                <label for="complemento" class="form-label">Complemento</label>
+                {{form_cf.complemento}}
+            </div>
+            <div class="col-md-6">
+                <label for="pais" class="form-label">País</label>
+                {{form_cf.pais}}
+            </div>
+            <div class="col-md-4">
+                        
+                <label for="tipo" class="form-label">Tipo</label>
+                {{form_cf.tipo}}
+            </div>
+            
+        </div>
+        <!--Buttons-->
+        <div class="buttons">
+            <button id="btnAdc" class="btn btn-laranja">Salvar</button>
+            <button id="btnLimp" class="btn btn-cinza">Limpar</button>
+            <button id="btnCanc" class="btn btn-danger">Cancelar</button>
+        </div>
+    </form>
+    </div>
+</body>
+
+{% endblock%}

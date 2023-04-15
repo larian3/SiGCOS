@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %} Lista Projeto {% endblock%}
+{%load static%}
+
+{% block content %}
+
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--Link CSS-->
+<link rel="stylesheet" href="{% static 'css/lista_contratos.css' %}">
+
+<body style="background-color:  #dcd9d4;">
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Informações sobre Ordens de Serviço e Projetos</div>
+    </div>
+
+<!-- GRAFICO DE COLUNAS GOOGLE CHARTS INICIO -->
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        
+        ["MÊS", "VALOR DO CONTRATO", { role: "style" } ],
+        
+        {% for valor in valor_projetos %}
+
+            ['{{valor.data_abertura}}', {{valor.valor_global_contrato}}, '{{valor.cor}}'],
+
+        {% endfor %}
+
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                        2]);
+
+        var options = {
+        title: "RECEITA BRUTA REFERENTE A CONTRATOS ABERTOS",
+        width: 800,
+        height: 400,
+        bar: {groupWidth: "85%"},
+        legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+    }
+    </script>
+<div id="columnchart_values" style="width: 900px; height: 300px; margin: 10%;"></div>
+<!-- GRAFICO DE COLUNAS GOOGLE CHARTS FIM -->
+
+</body>
+{% endblock %}

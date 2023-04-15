@@ -1,0 +1,33 @@
+body{
+    background-color: #aaa9a9;
+    font-family: 'Inder', sans-serif;
+}
+
+
+#navbar_menu{
+    background-color:  #e4e3e3;
+}
+
+.nav-link{
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#navbar-items{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}  
+
+#nav-brand{
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nav-link:hover, .nav-link:active{
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: #D8752E;
+}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %} cadastrar usuario {% endblock%}
+{% load static %}
+
+{% block content %}
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--Link CSS-->
+<link rel="stylesheet" href="{% static 'css/crud_usuarios.css' %}">
+
+<body>
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Cadastrar Usuario</div>
+    </div>
+    
+    <div class="conteiner" style="margin-top: 10%;">
+            <form action="" method="post">
+
+                <div class="form-row">
+                    {% csrf_token %}
+
+                    <div class="col-md-12">
+                        <label for="nome" class="form-label">Nome</label>
+                        {{ form_user.nome}}
+                    <!-- <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite aqui">-->
+                    </div>
+                    <div class="col-md-10">
+                        
+                        <label for="cpf" class="form-label">CPF</label>
+                        {{ form_user.cpf}}
+                    <!-- <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite aqui">-->
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <label for="data_nasc" class="form-label">Data de Nascimento</label>
+                        {{ form_user.data_nascimento}}
+                        <!--<input type="date" class="form-control" id="data_nasc" name="data_nasc">-->
+                    </div>
+                    <div class="col-md-10">
+                
+                        <label for="endereco" class="form-label">Endereço</label>
+                        {{ form_user.endereço}}
+                        <!--<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite aqui">-->
+                    </div>
+                    <div class="col-md-8">
+                        
+                        <label for="cidade" class="form-label">Cidade</label>
+                        {{ form_user.cidade}}
+                        <!--<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite aqui">-->
+                    </div>
+                    <div class="col-md-4">
+                        
+                        <label for="bairro" class="form-label">Bairro</label>
+                        {{ form_user.bairro}}
+                        <!--<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite aqui">-->
+                    </div>
+                    <div class="col-md-8">
+                        
+                        <label for="cargo" class="form-label">Cargo</label>
+                        {{ form_user.cargo}}
+                    </div>
+                    <div class="col-md-4">
+                        
+                        <label for="situação" class="form-label">Situação</label>
+                        {{ form_user.situação}}
+                    </div>
+                
+                
+                <form action="" method="post">
+
+                    {% csrf_token %}
+                
+                    <div class="col-md-4">
+                        <label for="email" class="form-label">Nome de Usuário</label>
+                        {{form_usuario.username}}
+                    </div>
+                
+                    <div class=" col-md-4">
+                        <label for="senha" class="form-label">Senha</label>
+                        {{form_usuario.password1}}
+                    </div>
+                
+                    <div class="col-md-4">
+                        <label for="senha2" class="form-label">Confirme a Senha</label>
+                        {{form_usuario.password2}}
+                    </div>
+    
+                    <div class="col-md-8">
+                        <button type="submit" id="btnAdd" class="btn btn-laranja">Adicionar</button>
+                        <button id="btnLimp" class="btn btn-cinza">Limpar</button>
+                        <button id="btnCanc" class="btn btn-danger">Cancelar</button>
+                    </div>
+                    </div>
+                </form>
+            </form>      
+    </div>
+</body>
+
+{% endblock %}

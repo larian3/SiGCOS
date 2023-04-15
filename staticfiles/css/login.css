@@ -1,0 +1,119 @@
+* {
+	box-sizing: border-box;
+    font-family: 'Inder', sans-serif;
+}
+
+body{
+    background-color: #dcd9d4;
+	margin: 0;
+    max-width: 100vw;
+    min-height: 45vw;
+    overflow:hidden;
+}
+
+#rodape{
+    font-size: 14px;
+    position: absolute;
+    grid-area: rodape;
+    margin-top: 94vh;
+    padding: 1%;
+    /* padding-top: 10px; */
+    text-align: center;
+    background: #1d1d1de7;
+    color: #dcdcdc;
+    width: 100%;
+}
+
+/* tamanho do backgroud de .area-login */
+.container {
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh
+}
+
+/* ajustes dentro do backgorund de .login */
+form {
+    background-color: #1d1d1de7;
+	border: 1px solid #aaa9a9;
+	border-radius: 7px;
+	padding: 35px;
+    width: 550px;
+    height: 450px;
+    justify-items: center;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+}
+
+.container img{
+    width: 130px;
+    height:auto;
+    padding-bottom: 12px;
+
+}
+
+/* estilo do botão de acessar */
+.button_acess {
+    height: 8%;
+    text-align: center;
+	border-radius: 10px;
+	font-size: 12px;
+	margin-top: 20px;
+	width: 18%;
+    margin-left: 69.5%;
+    background: #D8752E;
+    border: #ccc;
+	color: rgb(255, 255, 255);
+}
+
+.button_acess:hover {
+    cursor: pointer;
+    background-color: #df5611;
+}
+
+h3 {
+    margin-top:8%;
+    margin-left: 12.3%;
+    text-align: left;
+    font-family: 'Inder';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 15px;
+    color: white ;
+}
+ 
+input {
+    margin-top: 10px;
+    display: flex;
+    padding: 10px;
+    width: 75%;
+    height: 10%;
+    margin: 8px auto;
+    background-color: #ccc;
+    border:1px solid #df5611;
+    margin-bottom: 20px;
+	border-radius: 5px;
+}
+
+@media only screen and (max-width: 1241px) {
+	.container {
+		margin: 20px auto;
+        justify-items: center;
+        height: 50%;
+	}
+}
+
+@media only screen and (max-width: 615px) {
+    .button_acess {
+        margin: 10px auto;
+        justify-items: center;
+        height: 8%;
+        width: 22%;
+        font-size: 10px;
+        margin-left: 65%
+    }
+}

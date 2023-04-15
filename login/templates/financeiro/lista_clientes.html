@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %} gerenciar clientes {% endblock%}
+{%load static%}
+
+{% block content %}
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--Link CSS-->
+<link rel="stylesheet" href="{% static 'css/lista_cf.css' %}">
+
+
+<body style="background-color:  #dcd9d4;">
+    <!--Títulos-->
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Gerenciar Clientes</div>
+    </div>
+
+    <div class="relacao" style="margin-top: 9%;">
+        <div id="ret2">Relação de Clientes</div>
+    </div>
+
+    <div class="buttonfixed">
+        <nav class="navbar fixed-top" style="margin-top: 10%;">   
+            <!--Botôes-->
+            <div class="buttons">
+                <a href="/financeiro/"> <button id="btnAdd" class="btn btn-laranja fixed-left">Cadastrar</button> </a>
+                <button id="btnEdit" class="btn btn-primary">Voltar</button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid">
+
+        {% for cliente in lista_fornecedores_clientes %}
+        
+        <div class="form2"></div>
+        <div class="MarginButton" style="margin-top: 2%;">
+
+            <a href="/cliente/{{cliente.id}}">
+
+                <button class="button_acess" type="submit">
+                    <div class="row">
+                        <div class="col">
+                            <p>CPF/CNPJ: {{cliente.cpf_cnpj}}</p>
+                            <p>Nome Fantasia: {{cliente.nome_fantasia}}</p>
+                            <p>Razão Social: {{cliente.razão_social}}</p>
+                            <p">Email: {{cliente.email}}</p>
+                        </div>
+                        <div class="col">
+                            <p>Endereço: {{cliente.endereço}}</p>
+                            <p>Complemento: {{cliente.complemento}}</p>
+                            <p>Tipo: {{cliente.tipo}}</p>
+                        </div>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+{% endblock%}
+

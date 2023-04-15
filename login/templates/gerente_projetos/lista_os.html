@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %} Lista OS {% endblock%}
+{%load static%}
+
+{% block content %}
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- CSS do projeto -->
+<link rel="stylesheet" href="{% static 'css/lista_os_ofc.css' %}">
+
+<body style="background-color:  #dcd9d4;">
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Gerenciar Ordens de Serviço</div>
+    </div>
+
+    <div class="relacao" style="margin-top: 9%;">
+        <div id="ret2">Relação de Ordens de Serviço</div>
+    </div>
+
+    <div class="buttonfixed">
+        <nav class="navbar fixed-top" style="margin-top: 10%;">    
+            <!--Botôes-->
+            <div class="buttons">
+                <a href="/cadastro_os/"> <button id="btnAdd" class="btn btn-laranja fixed-left">Cadastrar</button> </a>
+                <button id="btnEdit" class="btn btn-primary">Voltar</button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid">
+
+        {% for os in lista_os %}
+        <div class="group-buttons" style="margin-top: 2%;">
+            <a href="/os/{{os.id}}">
+                <button class="button_acess" type="submit">
+                    <div class="row">
+                        <div class="col">
+                            <p>Código OS: {{os.codigo_os}}</p>
+                            <p>Contrato: {{os.n_contrato}}</p>
+                            <p>Abertura: {{os.abertura}}</p>
+                            <p">Vencimento: {{os.vencimento}}</p>
+                        </div>
+                        <div class="col">
+                            <p>CPF/CNPJ: {{os.cnpj_fk}}</p>
+                            <p>Contratante: {{os.contratante}}</p>
+                            <p>Tipo de Serviço: {{os.tipo_serviço}}</p>
+                            <p>Situação: {{os.situação}}</p>
+                        </div>
+                    </div>
+                </button>
+            </a>
+        </div>
+    {% endfor %}
+</body>
+
+{% endblock%}

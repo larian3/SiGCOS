@@ -1,0 +1,194 @@
+*{
+    box-sizing: border-box;
+ }
+ 
+ body{
+     margin:0;
+ }
+
+ .navbar{
+     display: flex;
+     flex-flow: row wrap;
+     height:58px;
+     width: 100%;
+     background: #e4e3e3;
+     justify-content: center;
+     align-items: center;
+     position:fixed;
+     border-bottom:5px solid #D8752E;
+ }
+ 
+ .logo{
+  flex:10%;
+  /*border:1px solid red;*/
+  text-align: center;
+ 
+ }
+
+ /* Aqui tu coloca a fonte que ta la no projeto */
+ 
+ .logo h1{
+     font-family:'FreeMono, monospace';
+     color: black;
+     font-size: 18px;
+     margin-left: -300px;
+ }
+ 
+ .menu{
+     flex:30%;
+     /*border:1px solid green;*/
+     text-align: right;
+ }
+ 
+ .menu a{
+     color:rgb(0, 0, 0);
+     text-decoration: none;
+     font-size:15px;
+     padding:20px 10px;
+ }
+ 
+ /* Função ao passar o mouse */
+ .menu a:hover{
+     color: #ffffff;
+     border-top:solid #646262;
+     background-color: #D8752E;
+ }
+ 
+ #botao{
+     color: red;
+     margin-right: 10%;
+ }
+ 
+ #botao:hover{
+     border:none;
+     background: rgb(205, 42, 42);
+     color: rgb(255, 255, 255);
+
+ }
+ 
+ .header{
+     display: flex;
+     flex-flow:row wrap;
+     justify-content: center;
+     align-items: center;
+     /* height:768px; */
+     background:rgb(0, 0, 0);
+     padding: 100px;
+ }
+ 
+ .headline{
+     margin-left: 3%;
+     flex:30%;
+     /* border:1px solid black; */
+ }
+
+ 
+ .headline h2{
+     border-bottom: solid #646262;
+     font-family: 'Helvetic', sans-serif;
+     font-weight: 10;
+     font-size: 64px;
+     color: #D8752E;
+     padding:0;
+     margin:0;
+     /* border:1px solid black; */
+ }
+ 
+ .headline p{
+     font-size: 20px;
+     color: #f0f0f0;
+     text-align: left;
+ }
+ 
+ .contact-btn{
+     margin-top: 15%;
+     display:inline-block;
+     background: #D8752E ;
+     padding: 20px;
+     color:aliceblue;
+     text-transform:uppercase;
+     border-radius: 5px;
+     text-decoration: none;
+ }
+ 
+ .contact-btn:hover{
+     background: #af5e24;
+ }
+ 
+ .img-headline{
+     flex:60%;
+     /* border:1px solid deeppink; */
+ }
+ 
+ section{
+     font-family: 'Helvetic', sans-serif;
+     display: inline-block;
+     margin-top: 80px;
+     border:1px solid black;
+     margin-left: 5%;
+     margin-right: 5%;
+     /* height: 400px; */
+     padding: 5%;
+     text-align: center;
+     width:90%;
+ }
+ 
+ section h2{
+     width:100%;
+     font-size: 50px;
+     margin: 0;
+     font-family: 'Helvetic', sans-serif;
+     font-weight: bold;
+     color:black;
+ }
+ 
+ .servicos{
+     display:inline-block;
+     margin-top: 5%;
+ }
+ 
+ .card{
+     font-family: 'Helvetic', sans-serif;
+     display:inline-block;
+     width: 30%;
+     padding: 20px;
+     margin: 1%;
+     border: 1px solid rgb(33, 33, 33);
+     border-radius: 5%;
+     cursor:pointer;
+ }
+ 
+ .card:hover{
+     background: #D8752E;
+     border: 1px solid black;
+ }
+ 
+ footer{
+     margin-top: 100px;
+     height: 415px;
+     background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(26, 25, 25), rgb(0, 0, 0));
+     text-align: center;
+     border-top:5px solid #D8752E;
+ }
+ 
+ .logo-rodape{
+     padding:100px;
+ 
+ }
+ 
+ .legenda{
+     color: #D8752E;
+     font-size: 22px;
+ }
+ 
+ .logosig{
+    position:absolute;
+    left: 5px;
+    width: 180px;
+    margin-left: 10px;
+    margin-top: -18px;
+ }
+
+ .listra{
+    border-bottom:solid #646262;
+ }

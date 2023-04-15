@@ -1,0 +1,22 @@
+<table>
+    <thead>
+      <tr>
+        <th>Valor da Venda</th>
+        <th>Nome do Cliente</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for venda in total %}
+        <tr>
+          <td>{{ venda.valor_os_total }}</td>
+          <td>{{ venda.contratante }}</td>
+        </tr>
+      {% endfor %}
+      <tr>
+        <td>soma</td>
+        <td>{{ soma }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  

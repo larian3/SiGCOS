@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %} cadastro projeto {% endblock%}
+{% load static %}
+{% block content %}
+
+<!--Link do BotsTrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--Link do CSS do Projeto-->
+    <link rel="stylesheet" href="{% static 'css/crud_cf.css' %}">
+
+<body>
+    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+        <div id="ret1">Informações do Projeto</div>
+    </div>
+
+    <div class="conteiner" style="margin-top: 8%;">
+    <form action="" method="POST" enctype="multipart/form-data">
+        
+        {% csrf_token %}
+        
+        <div class="form-row">
+
+            <div class="col-md-6">
+                <label for="n_contrato" class="form-label">Nº do Contrato</label>
+                {{form_cadastro_projetos.n_contrato}}
+            </div>
+
+            <div class="col-md-6">
+                <label for="vigencia" class="form-label">Vigência</label>
+                {{form_cadastro_projetos.vigencia}}
+            </div>
+
+            <div class="col-md-3">
+                <label for="cnpj_fk" class="form-label">CPF/CNPJ</label>
+                {{form_cadastro_projetos.cnpj_fk}}
+            </div>
+
+            <div class="col-md-9">
+                <label for="orgao" classs="form-label">Contratante</label>
+                {{form_cadastro_projetos.contratante}}
+            </div>
+
+            <!--Pontos de Função-->
+            <div class="col-md-4">
+                <label for="pf" class="form-label">Qtd Pontos de Função (PF)</label>
+                {{form_cadastro_projetos.pontos_função}}
+            </div>
+
+            <div class="col-md-4">
+                <label for="pf_unit" class="form-label">V.Unit (PF)</label>
+                {{form_cadastro_projetos.pontos_função_unit}}
+            </div>
+
+            <div class="col-md-4">
+                <label for="valor" class="form-label">Valor Total</label>
+                {{form_cadastro_projetos.valor_total}}
+            </div>
+
+            <!--Ordens de Serviço-->
+            <div class="col-md-4">
+                <label for="oesses" class="form-label">Qtd Horas (OS)</label>
+                {{form_cadastro_projetos.qtd_horas_os}}
+            </div>
+
+            <div class="col-md-4">
+                <label for="os_unit" class="form-label">V.Unit (OS)</label>
+                {{form_cadastro_projetos.valor_os_unit}}
+            </div>
+
+            <div class="col-md-4">
+                <label for="valor-os" class="form-label">Valor Total</label>
+                {{form_cadastro_projetos.valor_os_total}}
+            </div>
+
+            <!--R$ Global-->
+            <div class="col-md-6">
+                <label for="valorglob" class="form-label">Valor Global do Contrato</label>
+                {{form_cadastro_projetos.valor_global_contrato}}
+            </div>
+
+            <div class="col-md-6">
+                <label for="DataAbertura" class="form-label">Data de Abertura</label>
+                {{form_cadastro_projetos.data_abertura}}
+            </div>
+
+            <!--Reponsável pela Execução do Contrato-->
+            <div class="col-md-6">
+                <label for="respPJ" classs="form-label">GP Responsável</label>
+                {{form_cadastro_projetos.GP_responsavel}}
+            </div>
+
+            <div class="col-md-6">
+                <label for="emailrespPJ" classs="form-label">E-mail</label>
+                {{form_cadastro_projetos.email_GP_responsavel}}
+            </div>
+
+            <!--Opções-->
+            <div class="col-md-5">
+                <label for="TipoServ" classs="form-label">Tipo de Serviço</label>
+                {{form_cadastro_projetos.tipo_serviço}}
+            </div>
+
+            <div class="col-md-2">
+                <label for="situacao" classs="form-label" >Situação</label>
+                {{form_cadastro_projetos.situação}}
+            </div>
+
+            <!-- ANEXO DOS RELATORIOS -->
+            <div class="col-md-5">
+                <label classs="form-label" for="id_relatorio" >Anexar Relatório do Projeto</label>
+                {{form_cadastro_projetos.relatorio}}
+            </div>
+
+        </div>
+
+        <!--Buttons-->
+        <div class="buttons">
+            <button id="btnAdc" type = "submit" class="btn btn-laranja" onclick="salvarDados()">Salvar</button>
+            <!--<button id="btnLimp" class="btn btn-cinza" onclick="limparDados()">Limpar</button>-->
+            <button id="btnCanc" class="btn btn-danger" onclick="voltarPagina()">Cancelar</button>
+           
+        <script>
+            function voltarPagina(){
+                window.history.back();//funçõa para voltar 
+            }
+
+            function salvarDados(){
+                var confirmacao = confirm("Projeto salvo com sucesso!");
+
+                if (confirmacao){
+                    document.getElementById("btnAdc")
+                }
+            }
+        </script>
+        
+        </div>
+    </form>
+    </div> 
+</body>
+
+
+{% endblock%}

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inder&display=swap" rel="stylesheet">
+</head>
+
+<body> 
+    <div class="retangulo">
+        <div id="ret1"></div>
+        <div id="ret2"></div>
+        <div id="rodape">Universidade Federal Rural da Amazônia | Copyright © 2023 | UFRA</div>
+    </div>
+    <div class="container" style="height: 90vh" >
+        <form method="post" style="border-radius: 7px; padding: 35px; width: 540px; height: 540px; justify-items: center; ">
+            
+            <img id="imgl" src="/static/png/Logo_SiGCOS.png" style="width: 27%; height: 15%; ">
+            
+            {% csrf_token %}
+            
+            {{form_login.username.errors}}
+            <h3 style="margin-top:8%; margin-left: 12.3%;">Email corporativo:</h3>
+            {{form_login.username}}
+        
+            {{form_login.password.errors}}
+            <h3 style="margin-top:8%; margin-left: 12.3%;">Senha:</h3>
+            {{form_login.password}}
+            
+            <button class="button_acess" type="submit" style="margin-top:20%; margin-left: 80%;" >ACESSAR ></button>
+        </form>
+    </div>
+</body>
+</html>
