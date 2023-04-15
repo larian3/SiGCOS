@@ -1,1 +1,1 @@
-web gunicorn SIGCOS.wsgi -- log.file -
+web gunicorn SiGCOS.wsgi -- log.file -
