@@ -116,7 +116,8 @@
  }
  
  .img-headline{
-     flex:60%;
+     flex:100%;
+     
      /* border:1px solid deeppink; */
  }
  

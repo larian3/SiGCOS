@@ -3,6 +3,11 @@ body{
     font-family: 'Inder', sans-serif;
 }
 
+img{
+    width: 100px;
+    height: 50px;
+    margin-left: 5px;
+}
 
 #navbar_menu{
     background-color:  #e4e3e3;
