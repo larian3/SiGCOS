@@ -61,10 +61,16 @@
         </div>
         <!--Buttons-->
         <div class="buttons">
-            <button id="btnAdc" class="btn btn-laranja">Salvar</button>
-            <button id="btnLimp" class="btn btn-cinza">Limpar</button>
-            <button id="btnCanc" class="btn btn-danger">Cancelar</button>
+            <button id="btnAdc" class="btn btn-laranja" >Salvar</button>
+
+            <button id="btnCanc" class="btn btn-danger" onclick="voltarPagina()">Cancelar</button>
         </div>
+        <script>
+            function voltarPagina(){
+                window.history.back();//funçõa para voltar a pagina anterior
+            }
+
+        </script>
     </form>
     </div>
 </body>

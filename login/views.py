@@ -10,19 +10,19 @@ import datetime
 
 #================================= VIEWS FINANCEIRO ======================================================
 
-@group_required("setor_financeiro","Diretor")
+@group_required("setor_financeiro","diretor")
 def lista_fornecedores(request):
     lista_fornecedores_clientes = fornecedores_clientes.objects.filter(tipo = "Fornecedor") 
     return render(request, 'financeiro/lista_fornecedores.html', {'lista_fornecedores_clientes': lista_fornecedores_clientes})
 
 
-@group_required("setor_financeiro","Diretor")
+@group_required("setor_financeiro","diretor")
 def lista_clientes(request):
     lista_fornecedores_clientes = fornecedores_clientes.objects.filter(tipo = "Cliente") 
     return render(request, 'financeiro/lista_clientes.html', {'lista_fornecedores_clientes': lista_fornecedores_clientes})
 
 
-@group_required("setor_financeiro", "Diretor")
+@group_required("setor_financeiro", "diretor")
 def view_cliente(request, id):
     
     cliente = get_object_or_404(fornecedores_clientes, pk=id)
@@ -45,7 +45,7 @@ def view_cliente(request, id):
         return render(request, 'financeiro/cliente.html', {'form_cliente':form_cliente, 'cliente' : cliente})
     
 
-@group_required("setor_financeiro", "Diretor")
+@group_required("setor_financeiro", "diretor")
 def view_fornecedor(request, id):
    
     fornecedor = get_object_or_404(fornecedores_clientes, pk=id)
@@ -107,12 +107,12 @@ def logar_usuario(request):
     return render(request, 'projetos/login.html', {'form_login': form_login})
 
 
-@group_required("administrador")
+@group_required("administrador", "diretor")
 def lista_usuarios(request):
     lista_usuarios = funcionarios.objects.all() 
     return render(request, 'projetos/lista_usuarios.html', {'lista_usuarios': lista_usuarios})
 
-@group_required("administrador")
+@group_required("administrador", "diretor")
 def view_usuario(request, id):
    
     usuario = get_object_or_404(funcionarios, pk=id)
@@ -161,7 +161,7 @@ def cadastrar_info_usuarios(request):
 
 #================================= VIEWS PROJETOS =======================================================
 
-@group_required("gerente_projeto")
+@group_required("gerente_projeto", "diretor")
 def tela_projetos_GP(request):
     lista_projetos = projetos.objects.filter(GP_responsavel=request.user)
     return render(request, 'gerente_projetos/lista_projetos.html',{'lista_projetos': lista_projetos} )
@@ -175,15 +175,20 @@ def tela_projetos(request):
 
 @group_required("gerente_portifolio", "gerente_projeto")
 def cadastro_projetos(request):
+
+    #VERIFICAÇÃO DE GRUPO DE USUARIO PARA PERMITIR EDIÇÃO DE FORMULARIOS
+    def is_gpp(user):
+        return user.groups.filter(name='gerente_portifolio').exists()
+    
     if request.method == 'POST':
         form_cadastro_projetos = Projetos_Form(request.POST, request.FILES)
 
-        if form_cadastro_projetos.is_valid() :
+        if form_cadastro_projetos.is_valid() and is_gpp(request.user):
             print ("valido")
             form_cadastro_projetos.save()
             return redirect(tela_projetos)
         else:
-            return redirect(tela_inicial)
+            return redirect(autentic_necessaria)
     else:
         form_cadastro_projetos = Projetos_Form()
 
@@ -228,25 +233,33 @@ def view_projeto(request, id):
 #================================= VIEWS OS ======================================================
 
 @group_required("gerente_projeto")
+
 def cadastro_os(request):
+
+    def is_gp(user):
+        return user.groups.filter(name='gerente_projeto').exists()
+
     if request.method == 'POST':
         form_os = OS_Form(request.POST)
 
-        if form_os.is_valid() :
+        if form_os.is_valid() and is_gp(request.user):
             print ("valido")
             form_os.save()
             return redirect(cadastro_os)
         else:
-            return redirect(tela_inicial)
+            return redirect(autentic_necessaria)
     else:
         form_os = OS_Form()
 
     return render(request, 'gerente_projetos/cadastrar_os.html', {'form_os': form_os})
 
 
-@group_required("gerente_projeto")
+@group_required("gerente_projeto", "diretor")
 def view_os(request, id):
-    print("aqui")
+
+    def is_gp(user):
+        return user.groups.filter(name='gerente_projeto').exists()
+
     os = get_object_or_404(ordem_serviço, pk=id)
     form_os = OS_Form(instance = os)
     
@@ -254,15 +267,15 @@ def view_os(request, id):
         
         form_os = OS_Form(request.POST, instance = os) 
         
-        if form_os.is_valid():
+        if form_os.is_valid() and is_gp(request.user):
             form_os.save()
             return redirect('lista_os')
         else:
-            return render(request, 'gerente_projetos/os.html', {'form_os':form_os, 'os' : os})
+              return redirect(autentic_necessaria)
     else:
         return render(request, 'gerente_projetos/os.html', {'form_os':form_os, 'os' : os})
 
-@group_required("gerente_projeto")
+@group_required("gerente_projeto", "diretor")
 def lista_os(request):
     lista_os = ordem_serviço.objects.all()
 
@@ -296,20 +309,29 @@ def tela_dashboards(request):
     projetos_inativos= projetos.objects.filter(situação='Inativo').count()
     
     valor_projetos = projetos.objects.raw("SELECT 1 as id, valor_global_contrato, n_contrato FROM login_projetos where situação = 'Ativo'")
+
    
-    
     return render(request, 'gerente_portifolio/dashboards.html', {'valor_projetos':valor_projetos, 'os_FinalizadosRecentes':os_FinalizadosRecentes,
                                                                 'os_Finalizadas':os_Finalizadas,'os_Pendentes':os_Pendentes, 'os_inativas':os_inativas,
                                                                 'prjetos_finalizados_recentes': prjetos_finalizados_recentes, 'projetos_finalizados':projetos_finalizados,
                                                                 'projetos_pendentes':projetos_pendentes, 'projetos_inativos': projetos_inativos })
- 
 
+
+def saiba_mais(request):
+
+    return render(request, 'projetos/saiba_mais.html',)
+
+    
 
 
 def autentic_necessaria(request):
 
     return render(request, 'projetos/autentic_necessaria.html',)
 
+
+def saiba_mais(request):
+
+    return render(request, 'projetos/saiba_mais.html',)
 
 
 def teste_upload(request):

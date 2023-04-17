@@ -35,6 +35,8 @@ urlpatterns = [
 
     path('upload_relatorio/', teste_upload, name= "upload_relatorio"),
     path('tela_dashboards/', tela_dashboards, name = 'tela_dashboards'),
+
+    path('saiba_mais/', saiba_mais, name = 'saiba_mais'),
 ]
 
 

@@ -73,19 +73,11 @@
 
             <!--Buttons-->
         <div class="buttons">
-            <button id="btnAdc" class="btn btn-laranja" onclick="salvarDados()">Salvar</button>
+            <button id="btnAdc" class="btn btn-laranja">Salvar</button>
             <!--<button id="btnLimp" class="btn btn-cinza">Limpar</button>-->
             <button id="btnCanc" class="btn btn-danger" onclick="voltarPagina()">Cancelar</button>
             
             <Script>
-                //função para exibir mensagem de confirmação
-                function salvarDados(){
-                    var confirmacao = confirm("Projeto salvo com sucesso!");
-                    if (confirmacao){
-                        document.getElementById("btnAdc")
-                    }
-                }
-
                 //funcção para voltar a pagina anterior caso o btn cancelar seja clicado
                 function voltarPagina(){
                     window.history.back();

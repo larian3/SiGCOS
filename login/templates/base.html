@@ -79,11 +79,24 @@
                 
                 <li class="nav-item">
                     <a class="Exit" href="{% url 'logar_usuario' %}">
-                        <button type="button" class="btn-close" aria-label="Close" style="position: absolute; width: 30px; margin-left: 300px; margin-top: 7px;"></button> 
+                        <button id = "botao_sair" type="button" style="height: 100%;
+                        border-radius: 7px;
+                        width: 170%;
+                        margin-left: 550%;
+                        background: #D8752E;
+                        border: #ccc;
+                        color: black;" onclick="sair()">SAIR</button> 
                     </a>
                 </li>
-
               </ul>
+              <script>
+                function sair(){
+                    confirmacao = confirm("Deseja realmente sair?");
+                    if(confirmacao){
+                        document.getElementsByClassName("botao_sair");
+                    }
+                }
+              </script>
             </div>
 
         </nav>

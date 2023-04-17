@@ -88,10 +88,14 @@
     
                     <div class="col-md-8">
                         <button type="submit" id="btnAdd" class="btn btn-laranja">Adicionar</button>
-                        <button id="btnLimp" class="btn btn-cinza">Limpar</button>
-                        <button id="btnCanc" class="btn btn-danger">Cancelar</button>
+                        <button id="btnCanc" class="btn btn-danger" onclick="voltarPagina()">Cancelar</button>
                     </div>
                     </div>
+                    <script>
+                        function voltarPagina(){
+                            window.history.back();//funçõa para voltar a pagina anterior
+                        }
+                    </script>
                 </form>
             </form>      
     </div>

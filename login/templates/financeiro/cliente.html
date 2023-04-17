@@ -12,7 +12,7 @@
 
 <body>
 
-    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+    <div class="retangulo fixed-top" style="margin-top: 3.2%;">
         <div id="ret1">Editar Cliente </div>
     </div>
 
@@ -67,11 +67,15 @@
                 <div class="col-md-12"> 
                     <div class="buttons">
                         <button type = "submit" id="btnAdc" class="btn btn-laranja">Salvar</button>
-                        <button id="btnLimp" class="btn btn-cinza">Limpar</button>
-                        <button id="btnCanc" class="btn btn-danger">Cancelar</button>
+                        <!--<button id="btnLimp" class="btn btn-cinza">Limpar</button> -->
+                        <button id="btnCanc" class="btn btn-danger" onclick="voltarPagina()">Cancelar</button>
                     </div>
                 </div>
-
+                <script>
+                    function voltarPagina(){
+                        window.history.back();//funçõa para voltar a pagina anterior
+                    }
+                </script>
             </div>
         </form>
     </div>            
