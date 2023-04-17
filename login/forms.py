@@ -33,7 +33,8 @@ tipos_de_serviço = (
 
 situação_projeto = (
     ("Ativo", "Ativo"),
-    ("Inativo", "Inativo")
+    ("Inativo", "Inativo"),
+    ("Concluído", "Concluído")
 )
 
 situação_user = (

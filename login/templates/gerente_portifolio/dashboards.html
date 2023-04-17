@@ -11,24 +11,71 @@
 <link rel="stylesheet" href="{% static 'css/lista_contratos.css' %}">
 
 <body style="background-color:  #dcd9d4;">
-    <div class="retangulo fixed-top" style="margin-top: 3.5%;">
+    <div class="retangulo fixed-top" style="margin-top: 3.2%;">
         <div id="ret1">Informações sobre Ordens de Serviço e Projetos</div>
     </div>
 
-<!-- GRAFICO DE COLUNAS GOOGLE CHARTS INICIO -->
-    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    google.charts.load("current", {packages:['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawOSChart);
+      google.charts.setOnLoadCallback(drawProjetoChart);
+      google.charts.setOnLoadCallback(drawValoresChart);
+
+      //GRAFICO OS
+      function drawOSChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Situação');
+        data.addColumn('number', 'Quantidade');
+        data.addRows([
+          ['Ativas', {{os_Pendentes}}],
+          ['Inativas', {{os_inativas}}],
+          ['Concluídas', {{os_Finalizadas}}],
+          ['Conluídas nos últimos 30 dias', {{os_FinalizadosRecentes}}],
+        ]);
+
+        var options = {title:'ORDENS DE SERVIÇO',
+                       width:550,
+                       height:350};
+
+        var chart = new google.visualization.PieChart(document.getElementById('os_div'));
+        chart.draw(data, options);
+      }
+
+      // grafico projeto
+      function drawProjetoChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Situação');
+        data.addColumn('number', 'Quantidade');
+        data.addRows([
+          ['Ativos', {{projetos_pendentes}}],
+          ['Inativos', {{projetos_inativos}}],
+          ['Concluídos', {{projetos_finalizados}}],
+          ['Conluídos nos últimos 30 dias', {{prjetos_finalizados_recentes}}],
+        ]);
+
+      
+        var options = {title:'PROJETOS',
+                       width:550,
+                       height:350};
+
+        
+        var chart = new google.visualization.PieChart(document.getElementById('projeto_div'));
+        chart.draw(data, options);
+      }
+
+      // grafico valores
+      function drawValoresChart() {
         var data = google.visualization.arrayToDataTable([
         
-        ["MÊS", "VALOR DO CONTRATO", { role: "style" } ],
+        ["MÊS", "VALOR DO CONTRATO", { role: "style" }],
         
         {% for valor in valor_projetos %}
 
-            ['{{valor.data_abertura}}', {{valor.valor_global_contrato}}, '{{valor.cor}}'],
+            ['{{valor.n_contrato}}', {{valor.valor_global_contrato}}, '{{valor.cor}}'],
 
         {% endfor %}
 
@@ -43,18 +90,30 @@
                         2]);
 
         var options = {
-        title: "RECEITA BRUTA REFERENTE A CONTRATOS ABERTOS",
-        width: 800,
-        height: 400,
+        title: "VALORES REFERENTES Á PROJETOS EM ABERTO",
+        width:550,
+        height:450,
         bar: {groupWidth: "85%"},
         legend: { position: "none" },
         };
-        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        var chart = new google.visualization.ColumnChart(document.getElementById("valores_div"));
         chart.draw(view, options);
     }
-    </script>
-<div id="columnchart_values" style="width: 900px; height: 300px; margin: 10%;"></div>
-<!-- GRAFICO DE COLUNAS GOOGLE CHARTS FIM -->
 
-</body>
+    </script>
+  </head>
+  <body>
+    <!--Table and divs that hold the pie charts-->
+    <table class="columns" style="margin: 10%; margin-bottom: 3%; align-items: center; margin-left: auto; margin-right: auto;">
+      <tr>
+        <td><div id="os_div" style="border: 5px solid #D8752E; width:100%"></div></td>
+        <td><div id="projeto_div" style="border: 5px solid #D8752E; margin-left: 5%; width:100%;"></div></td>
+      </tr>
+      <tr>
+        <td><div id="valores_div" style="margin-top: 8%; margin-left: 50%; border: 5px solid #D8752E; width:100%"></div></td>
+
+      </tr>
+    </table>
+
+  </body>
 {% endblock %}

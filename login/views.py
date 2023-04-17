@@ -207,10 +207,14 @@ def view_projeto(request, id):
         
         form_projeto = Projetos_Form(request.POST, request.FILES, instance = projeto) 
         
-        if form_projeto.is_valid() and (is_gpp(request.user) or is_gp(request.user)):
-            
+        if form_projeto.is_valid() and is_gp(request.user):
             form_projeto.save()
             return redirect('tela_projetos_GP')
+        
+        elif form_projeto.is_valid() and is_gpp(request.user):
+            form_projeto.save()
+            return redirect('tela_projetos')
+        
         else:
              return redirect(autentic_necessaria)
     
@@ -280,17 +284,26 @@ def tela_inicial(request):
 
 
 def tela_dashboards(request):
-    # os_FinalizadosRecentes = ordem_serviço.objects.filter(situação='Concluída', atualizado_em__gt = datetime.datetime.now()-datetime.timedelta(days=30)).count()
-    # os_Finalizadas = ordem_serviço.objects.filter(situação='Concluída').count()
-    # os_Pendentes = ordem_serviço.objects.filter(situação='Ativa').count()
-    # return render(request, 'projetos/inicio.html', 
-    #               {'os_FinalizadosRecentes':os_FinalizadosRecentes, 'os_Finalizadas':os_Finalizadas,'os_Pendentes':os_Pendentes })
+
+    os_FinalizadosRecentes = ordem_serviço.objects.filter(situação='Concluída', atualizado_em__gt = datetime.datetime.now()-datetime.timedelta(days=30)).count()
+    os_Finalizadas = ordem_serviço.objects.filter(situação='Concluída').count()
+    os_Pendentes = ordem_serviço.objects.filter(situação='Ativa').count()
+    os_inativas= ordem_serviço.objects.filter(situação='Inativa').count()
+   
+    prjetos_finalizados_recentes = projetos.objects.filter(situação='Concluído', atualizado_em__gt = datetime.datetime.now()-datetime.timedelta(days=30)).count()
+    projetos_finalizados = projetos.objects.filter(situação='Concluído').count()
+    projetos_pendentes = projetos.objects.filter(situação='Ativo').count()
+    projetos_inativos= projetos.objects.filter(situação='Inativo').count()
+    
+    valor_projetos = projetos.objects.raw("SELECT 1 as id, valor_global_contrato, n_contrato FROM login_projetos where situação = 'Ativo'")
+   
+    
+    return render(request, 'gerente_portifolio/dashboards.html', {'valor_projetos':valor_projetos, 'os_FinalizadosRecentes':os_FinalizadosRecentes,
+                                                                'os_Finalizadas':os_Finalizadas,'os_Pendentes':os_Pendentes, 'os_inativas':os_inativas,
+                                                                'prjetos_finalizados_recentes': prjetos_finalizados_recentes, 'projetos_finalizados':projetos_finalizados,
+                                                                'projetos_pendentes':projetos_pendentes, 'projetos_inativos': projetos_inativos })
  
 
-    valor_projetos = projetos.objects.raw("SELECT 1 as id, valor_global_contrato, data_abertura FROM login_projetos")
-    return render(request, 'gerente_portifolio/dashboards.html',{'valor_projetos':valor_projetos})
-
-    
 
 
 def autentic_necessaria(request):
