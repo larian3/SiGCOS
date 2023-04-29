@@ -78,7 +78,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="Exit" href="{% url 'logar_usuario' %}">
+                    
                         <button id = "botao_sair" type="button" style="height: 100%;
                         border-radius: 7px;
                         width: 170%;
@@ -86,14 +86,16 @@
                         background: #D8752E;
                         border: #ccc;
                         color: black;" onclick="sair()">SAIR</button> 
-                    </a>
                 </li>
               </ul>
               <script>
                 function sair(){
                     confirmacao = confirm("Deseja realmente sair?");
-                    if(confirmacao){
-                        document.getElementsByClassName("botao_sair");
+                    if(confirmacao == true){
+                        window.location.href = "{% url 'logar_usuario' %}"
+                    }
+                    else{
+                        return false;
                     }
                 }
               </script>
